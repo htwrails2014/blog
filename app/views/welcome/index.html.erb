@@ -1,3 +1,9 @@
-<h1>Hello, Rails!</h1>
+<h1>Erstaunliche Neuigkeiten</h1>
 
-Tipp!
+<% @articles.each do |article| %>
+  <h2><%= article.title %></h2>
+  <p>
+    <%= article.text %>
+  </p>
+  <%= link_to 'Mehr', article %>
+<% end %>

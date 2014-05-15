@@ -11,11 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140424090350) do
+ActiveRecord::Schema.define(version: 20140515085005) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
     t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "articles_categories", id: false, force: true do |t|
+    t.integer "article_id",  null: false
+    t.integer "category_id", null: false
+  end
+
+  add_index "articles_categories", ["category_id", "article_id"], name: "index_articles_categories_on_category_id_and_article_id", unique: true, using: :btree
+
+  create_table "categories", force: true do |t|
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

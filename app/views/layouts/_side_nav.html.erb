@@ -1,0 +1,8 @@
+<div class="well">
+  <h3>Categories</h3>
+  <ul class="nav nav-list">
+    <% Category.find_each do |category| %>
+      <li><%= category.title %></li>
+    <% end %>                
+  </ul>                
+</div><!--/.well -->

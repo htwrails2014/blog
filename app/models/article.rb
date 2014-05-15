@@ -1,7 +1,6 @@
 class Article < ActiveRecord::Base
 	validates_presence_of :title, :text
 	validates :title, uniqueness: true
-	has_many :comments, dependent: :destroy
-
-	http_basic_authenticate_with name: "admin", password: "secret", except: [:index, :show]
+  has_many :comments, dependent: :destroy
+  has_and_belongs_to_many :categories
 end

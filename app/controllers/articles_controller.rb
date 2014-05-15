@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
 
+	http_basic_authenticate_with name: "admin", password: "secret", except: [:index, :show]
+  before_action :load_categories, only: [:new, :edit]
+
 	def index
 		@articles = Article.all		
 	end
@@ -31,7 +34,7 @@ class ArticlesController < ApplicationController
 
  		@article.update_attributes(article_params)
 
-		@article.save
+		@article.save!
 		redirect_to @article
 	end
 
@@ -43,8 +46,13 @@ class ArticlesController < ApplicationController
 	end
 
 	private
+  
+  def load_categories
+    @categories = Category.all
+  end
 
 	def article_params
-		params.require(:article).permit(:title, :text)
+    
+		params.require(:article).permit(:title, :text, category_ids: [])
 	end
 end

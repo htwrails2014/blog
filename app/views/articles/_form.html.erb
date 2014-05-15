@@ -1,4 +1,9 @@
 <%= bootstrap_form_for @article do |f| %>
+
+  <h2>Categories</h2>
+  <%= f.select :category_ids, @categories.map { |c| [c.title, c.id] }, {}, multiple: true %>
+
+  <h2>Article</h2>
 	<%= f.text_field :title %>
 	<%= f.text_area :text %>
   <%= f.submit %>    
