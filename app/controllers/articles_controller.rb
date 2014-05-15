@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
-	http_basic_authenticate_with name: "admin", password: "secret", except: [:index, :show]
+  before_action :authenticate_user!, except: [:show]
+  
   before_action :load_categories, only: [:new, :edit]
 
 	def index
